@@ -73,7 +73,7 @@ namespace PilaTest
             pila.Push("elemento2");
             pila.Push("elemento3");
 
-            // Encuentra la posición del elemento en la pila
+            // Comprueba la existencia del elemento en la pila
             Assert.Contains("elemento1", pila);
         }
 
