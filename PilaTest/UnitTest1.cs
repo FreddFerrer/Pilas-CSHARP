@@ -5,9 +5,9 @@ namespace PilaTest
     public class UnitTest1
     {
         [Fact]
-        public void PruebaAgregarElementoAUnaPilaVacia()
+        public void TestAgregarElementoAUnaPilaVacia()
         {
-            var pila = new Stack<int>();
+            Stack<int> pila = new Stack<int>();
 
             // Agrega un elemento a la pila
             pila.Push(42);       
@@ -15,15 +15,34 @@ namespace PilaTest
             pila.Push(22);       
             pila.Push(11);       
 
-            // Asegúrate de que la pila tenga un elemento
+            // Asegurarse de que la pila tenga un elemento
             Assert.Equal(4, pila.Count);
-            Assert.Equal(11, pila.Peek());
         }
 
         [Fact]
-        public void PruebaPosicionDeUnElementoEnLaPila()
+        public void TestPilaVacia()
         {
-            // Crea una pila con algunos elementos
+            // Creo una pila de enteros
+            var stack = new Stack<int>();
+
+            // Agrego elementos a la pila
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+         
+            // Recorro la pila
+            while (stack.Count > 0)
+            {
+                stack.Pop();
+            }
+
+            Assert.Equal(0, stack.Count);
+        }
+
+        [Fact]
+        public void TestPosicionDeUnElementoEnLaPila()
+        {
+            // Creo una pila sin definir el tipo
             var pila = new Stack();
             pila.Push("elemento1");
             pila.Push("elemento2");
@@ -41,14 +60,14 @@ namespace PilaTest
                 }
             }
 
-            // Asegúrate de que la posición sea correcta
+            // Posición correcta?
             Assert.Equal(1, posicion);
         }
 
         [Fact]
-        public void ContieneUnElemento()
+        public void TestContieneUnElemento()
         {
-            // Crea una pila con algunos elementos
+            // Creo una pila con algunos elementos (string)
             var pila = new Stack<string>();
             pila.Push("elemento1");
             pila.Push("elemento2");
@@ -58,6 +77,20 @@ namespace PilaTest
             Assert.Contains("elemento1", pila);
         }
 
+        [Fact]
+        public void TestStackPeek()
+        {
+            // Creo una pila sin definir el tipo que solo reciba 3 elementos
+            var stack = new Stack();
+            stack.Push("hola");
+            stack.Push(2);
+            stack.Push(true);
 
+            var elementoSuperior = stack.Peek();
+
+            // Compruebo que el elemento superior sea true
+            Assert.Equal(true, elementoSuperior);
+
+        }
     }
 }
