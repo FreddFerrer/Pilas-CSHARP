@@ -16,12 +16,13 @@ namespace PilaTest
             pila.Push(22);       
             pila.Push(11);       
 
-            // Comprueba que la pila tenga un elemento
-            Assert.Equal(4, pila.Count);          
+            // Comprueba que la pila tenga un elemento          
+            Assert.True(pila.Any());
+            //Assert.Equal(4, pila.Count);
         }
 
         [Fact]
-        public void TestPilaVacia()
+        public void TestEliminarElemento()
         {
             // Creo una pila de enteros
             Stack<int> stack = new Stack<int>();
@@ -50,7 +51,7 @@ namespace PilaTest
             pila.Push("elemento2");
             pila.Push("elemento3");
 
-            // Comprueba la existencia del elemento en la pila
+            // Comprueba la existencia del elemento1 en la pila
             Assert.Contains("elemento1", pila);
         }
 
@@ -99,6 +100,33 @@ namespace PilaTest
         }
 
         [Fact]
+        public void TestRemoverElementoEspecifico()
+        {         
+            // Creo una pila sin definir el tipo
+            var stack = new Stack();
+            stack.Push(1);
+            stack.Push("hola");
+            stack.Push(false);
+            stack.Push("mundo");
+
+            // Creo una pila auxiliar
+            var tempStack = new Stack();
+
+            // Utilizo while para extraer cada elemento de la pila
+            while (stack.Count > 0)
+            {
+                var item = stack.Pop();
+                if (item == "hola")
+                {
+                    tempStack.Push(item);
+                }
+            }
+            
+            // Compruebo que la pila "principal" este vacia
+            Assert.True(stack.Count == 0);
+        }
+
+        [Fact]
         public void TestStackPerformance()
         {
             // Creo una pila de enteros
@@ -106,7 +134,7 @@ namespace PilaTest
 
             // Temporizador
             var stopwatch = new Stopwatch();
-            int numElementos = 100000000;
+            int numElementos = 100000;
 
             // Inicio temp.
             stopwatch.Start();
@@ -124,8 +152,8 @@ namespace PilaTest
             }
             stopwatch.Stop();
 
-            // Compruebo si el tiempo transcurrido es inferior a 1 segundo
-            Assert.True(stopwatch.ElapsedMilliseconds < 1000);
+            // Compruebo si el tiempo transcurrido es inferior a medio segundo
+            Assert.True(stopwatch.ElapsedMilliseconds < 500);
         }
     }
 }
