@@ -33,36 +33,3 @@ foreach (var item in pila1)
     Console.WriteLine(item);
 }
 
-Console.WriteLine(pila2.GetType());
-Console.WriteLine(pila1.ToArray());
-
-
-
-Console.WriteLine("+++++++++++++++++++++++");
-
-var stack = new Stack();
-stack.Push("casa");
-stack.Push(2.5);
-stack.Push(1);
-
-foreach (var item in stack)
-{
-    Console.WriteLine(item);
-}
-
-// Creo una pila nueva con los datos ordenados
-var list = stack.Cast<IComparable>().ToList();
-list.Sort();
-var sortedStack = new Stack(list);
-
-foreach (var item in sortedStack)
-{
-    Console.WriteLine(item);
-}
-
-
-
-
-
-
-

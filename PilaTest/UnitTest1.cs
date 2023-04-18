@@ -16,7 +16,7 @@ namespace PilaTest
             pila.Push(22);       
             pila.Push(11);       
 
-            // Comprueba de que la pila tenga un elemento
+            // Comprueba que la pila tenga un elemento
             Assert.Equal(4, pila.Count);          
         }
 
@@ -99,34 +99,6 @@ namespace PilaTest
         }
 
         [Fact]
-        public void TestRemoverElementoEspecifico()
-        {         
-
-            // Creo una pila sin definir el tipo
-            var stack = new Stack();
-            stack.Push(1);
-            stack.Push("hola");
-            stack.Push(false);
-            stack.Push("mundo");
-
-            // Creo una pila auxiliar
-            var tempStack = new Stack();
-
-            // Utilizo while para extraer cada elemento de la pila
-            while (stack.Count > 0)
-            {
-                var item = stack.Pop();
-                if (item == "hola" && item == "mundo")
-                {
-                    tempStack.Push(item);
-                }
-            }
-            
-            // Compruebo que la pila "principal" este vacia
-            Assert.True(stack.Count == 0);
-        }
-
-        [Fact]
         public void TestStackPerformance()
         {
             // Creo una pila de enteros
@@ -134,19 +106,19 @@ namespace PilaTest
 
             // Temporizador
             var stopwatch = new Stopwatch();
-            int numElements = 100000;
+            int numElementos = 100000000;
 
             // Inicio temp.
             stopwatch.Start();
 
             // Apilar
-            for (int i = 0; i < numElements; i++)
+            for (int i = 0; i < numElementos; i++)
             {
                 stack.Push(i);
             }
 
             // Desapilar
-            for (int i = 0; i < numElements; i++)
+            for (int i = 0; i < numElementos; i++)
             {
                 stack.Pop();
             }
