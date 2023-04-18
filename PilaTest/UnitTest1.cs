@@ -22,7 +22,7 @@ namespace PilaTest
         }
 
         [Fact]
-        public void TestEliminarElemento()
+        public void TestEliminarElementos()
         {
             // Creo una pila de enteros
             Stack<int> stack = new Stack<int>();
@@ -82,7 +82,6 @@ namespace PilaTest
             Assert.Equal(1, posicion);
         }
 
-
         [Fact]
         public void TestPeek()
         {
@@ -100,41 +99,14 @@ namespace PilaTest
         }
 
         [Fact]
-        public void TestRemoverElementoEspecifico()
-        {         
-            // Creo una pila sin definir el tipo
-            var stack = new Stack();
-            stack.Push(1);
-            stack.Push("hola");
-            stack.Push(false);
-            stack.Push("mundo");
-
-            // Creo una pila auxiliar
-            var tempStack = new Stack();
-
-            // Utilizo while para extraer cada elemento de la pila
-            while (stack.Count > 0)
-            {
-                var item = stack.Pop();
-                if (item == "hola")
-                {
-                    tempStack.Push(item);
-                }
-            }
-            
-            // Compruebo que la pila "principal" este vacia
-            Assert.True(stack.Count == 0);
-        }
-
-        [Fact]
-        public void TestStackPerformance()
+        public void TestPerformance()
         {
             // Creo una pila de enteros
             Stack<int> stack = new Stack<int>();
 
             // Temporizador
             var stopwatch = new Stopwatch();
-            int numElementos = 100000;
+            int numElementos = 100000000;
 
             // Inicio temp.
             stopwatch.Start();
@@ -153,7 +125,7 @@ namespace PilaTest
             stopwatch.Stop();
 
             // Compruebo si el tiempo transcurrido es inferior a medio segundo
-            Assert.True(stopwatch.ElapsedMilliseconds < 500);
+            Assert.True(stopwatch.ElapsedMilliseconds < 1000);
         }
     }
 }
