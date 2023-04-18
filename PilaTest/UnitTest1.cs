@@ -80,7 +80,7 @@ namespace PilaTest
         [Fact]
         public void TestStackPeek()
         {
-            // Creo una pila sin definir el tipo que solo reciba 3 elementos
+            // Creo una pila sin definir el tipo
             var stack = new Stack();
             stack.Push("hola");
             stack.Push(2);
@@ -91,6 +91,34 @@ namespace PilaTest
             // Compruebo que el elemento superior sea true
             Assert.Equal(true, elementoSuperior);
 
+        }
+
+        [Fact]
+        public void TestRemoverElemento()
+        {         
+
+            // Creo una pila sin definir el tipo
+            var stack = new Stack();
+            stack.Push(1);
+            stack.Push("hola");
+            stack.Push(2.5);
+            stack.Push("mundo");
+
+            // Creo una pila auxiliar
+            var tempStack = new Stack();
+
+            // Utilizo while para extraer cada elemento de la pila
+            while (stack.Count > 0)
+            {
+                var item = stack.Pop();
+                if (item == "hello" && item == "mundo")
+                {
+                    tempStack.Push(item);
+                }
+            }
+            
+            // Compruebo que la pila "principal" este vacia
+            Assert.True(stack.Count == 0);
         }
     }
 }
