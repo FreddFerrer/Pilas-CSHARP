@@ -23,7 +23,7 @@ namespace PilaTest
         public void TestPilaVacia()
         {
             // Creo una pila de enteros
-            var stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>();
 
             // Agrego elementos a la pila
             stack.Push(1);
@@ -43,7 +43,7 @@ namespace PilaTest
         public void TestPosicionDeUnElementoEnLaPila()
         {
             // Creo una pila sin definir el tipo
-            var pila = new Stack();
+            Stack<string> pila = new Stack<string>();
             pila.Push("elemento1");
             pila.Push("elemento2");
             pila.Push("elemento3");
@@ -68,7 +68,7 @@ namespace PilaTest
         public void TestContieneUnElemento()
         {
             // Creo una pila con algunos elementos (string)
-            var pila = new Stack<string>();
+            Stack<string> pila = new Stack<string>();
             pila.Push("elemento1");
             pila.Push("elemento2");
             pila.Push("elemento3");
