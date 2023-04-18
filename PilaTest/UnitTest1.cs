@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 
 namespace PilaTest
 {
@@ -15,8 +16,8 @@ namespace PilaTest
             pila.Push(22);       
             pila.Push(11);       
 
-            // Asegurarse de que la pila tenga un elemento
-            Assert.Equal(4, pila.Count);
+            // Comprueba de que la pila tenga un elemento
+            Assert.Equal(4, pila.Count);          
         }
 
         [Fact]
@@ -36,21 +37,37 @@ namespace PilaTest
                 stack.Pop();
             }
 
+            // Comprueba que la pila este vacia
             Assert.Equal(0, stack.Count);
         }
 
         [Fact]
-        public void TestPosicionDeUnElementoEnLaPila()
+        public void TestContieneUnElementoEspecifico()
         {
-            // Creo una pila sin definir el tipo
+            // Creo una pila con algunos elementos (string)
             Stack<string> pila = new Stack<string>();
             pila.Push("elemento1");
             pila.Push("elemento2");
             pila.Push("elemento3");
 
-            // Encuentra la posición del elemento en la pila
+            // Comprueba la existencia del elemento en la pila
+            Assert.Contains("elemento1", pila);
+        }
+
+        [Fact]
+        public void TestPosicionDeUnElementoEnLaPila()
+        {
+            // Creo una pila que recibe strings
+            Stack<string> pila = new Stack<string>();
+            pila.Push("elemento1");
+            pila.Push("elemento2");
+            pila.Push("elemento3");
+
             var elementos = pila.ToArray();
+
             int posicion = 0;
+            
+            // Encuentra la posición del elemento en la pila
             for (int i = 0; i < elementos.Length; i++)
             {
                 if (elementos[i] == "elemento2")
@@ -64,21 +81,9 @@ namespace PilaTest
             Assert.Equal(1, posicion);
         }
 
-        [Fact]
-        public void TestContieneUnElemento()
-        {
-            // Creo una pila con algunos elementos (string)
-            Stack<string> pila = new Stack<string>();
-            pila.Push("elemento1");
-            pila.Push("elemento2");
-            pila.Push("elemento3");
-
-            // Comprueba la existencia del elemento en la pila
-            Assert.Contains("elemento1", pila);
-        }
 
         [Fact]
-        public void TestStackPeek()
+        public void TestPeek()
         {
             // Creo una pila sin definir el tipo
             var stack = new Stack();
@@ -94,14 +99,14 @@ namespace PilaTest
         }
 
         [Fact]
-        public void TestRemoverElemento()
+        public void TestRemoverElementoEspecifico()
         {         
 
             // Creo una pila sin definir el tipo
             var stack = new Stack();
             stack.Push(1);
             stack.Push("hola");
-            stack.Push(2.5);
+            stack.Push(false);
             stack.Push("mundo");
 
             // Creo una pila auxiliar
@@ -111,7 +116,7 @@ namespace PilaTest
             while (stack.Count > 0)
             {
                 var item = stack.Pop();
-                if (item == "hello" && item == "mundo")
+                if (item == "hola" && item == "mundo")
                 {
                     tempStack.Push(item);
                 }
@@ -119,6 +124,36 @@ namespace PilaTest
             
             // Compruebo que la pila "principal" este vacia
             Assert.True(stack.Count == 0);
+        }
+
+        [Fact]
+        public void TestStackPerformance()
+        {
+            // Creo una pila de enteros
+            Stack<int> stack = new Stack<int>();
+
+            // Temporizador
+            var stopwatch = new Stopwatch();
+            int numElements = 100000;
+
+            // Inicio temp.
+            stopwatch.Start();
+
+            // Apilar
+            for (int i = 0; i < numElements; i++)
+            {
+                stack.Push(i);
+            }
+
+            // Desapilar
+            for (int i = 0; i < numElements; i++)
+            {
+                stack.Pop();
+            }
+            stopwatch.Stop();
+
+            // Compruebo si el tiempo transcurrido es inferior a 1 segundo
+            Assert.True(stopwatch.ElapsedMilliseconds < 1000);
         }
     }
 }
